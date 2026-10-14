@@ -1,0 +1,101 @@
+/* Токены и темы — отдельный файл, чтобы не раздувать размер */
+:root {
+  --bg: #f7f0e8; --bg-elev: #fffaf3; --bg-card: #ffffff;
+  --text: #2a1f2a; --text-soft: #6c5b66; --text-faint: #9b8c95;
+  --border: #ecdfd3;
+  --accent: #b85771; --accent-soft: #f1d3dc;
+  --warm: #d9a679; --warm-soft: #f3e1cb;
+  --good: #6a8f5a; --good-soft: #dfead0;
+  --warn: #c98a3a; --warn-soft: #f4e2c4;
+  --danger: #b04a4a;
+  --night-block: rgba(42, 29, 42, 0.85);
+  --day-block: rgba(185, 209, 234, 0.7);
+  --shadow: 0 2px 8px rgba(60, 30, 50, 0.06);
+  --shadow-elev: 0 6px 22px rgba(60, 30, 50, 0.10);
+  --radius: 14px; --radius-lg: 22px;
+  --tap: 44px; --header-h: 56px; --tabbar-h: 60px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+[data-theme="night"] {
+  --bg: #1a1219; --bg-elev: #221620; --bg-card: #2a1d2a;
+  --text: #efe1ea; --text-soft: #b9a5b3; --text-faint: #7a6877;
+  --border: #3a2a36;
+  --accent: #d98aa1; --accent-soft: #3a2530;
+  --warm: #c8a378; --warm-soft: #3a2e22;
+  --good: #8fb87a; --good-soft: #2a3a23;
+  --warn: #d9a657; --warn-soft: #3a2e1c;
+  --danger: #d18080;
+  --night-block: rgba(217, 138, 161, 0.55);
+  --day-block: rgba(155, 178, 200, 0.35);
+  --shadow: 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-elev: 0 6px 22px rgba(0,0,0,0.5);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; margin: 0; padding: 0; }
+html { font-size: 17px; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 1rem; line-height: 1.5; color: var(--text); background: var(--bg);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  overscroll-behavior-y: none;
+}
+button, input, textarea, select { font: inherit; color: inherit; }
+button { background: none; border: none; padding: 0; cursor: pointer; min-height: var(--tap); min-width: var(--tap); }
+input, textarea, select {
+  background: var(--bg-card); color: var(--text);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px 14px; min-height: var(--tap); width: 100%;
+}
+textarea { resize: vertical; min-height: 88px; }
+input:focus, textarea:focus, select:focus, button:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 1px;
+}
+.icon { display: inline-block; vertical-align: -4px; flex-shrink: 0; }
+.app { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+.boot { padding: 40px 24px; color: var(--text-soft); }
+.screen {
+  flex: 1 0 auto; padding: calc(var(--safe-top) + 12px) 16px calc(var(--tabbar-h) + var(--safe-bottom) + 24px);
+  max-width: 720px; margin: 0 auto; width: 100%;
+}
+.section { margin-bottom: 22px; }
+.section-title {
+  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-faint); margin: 6px 0 10px; padding: 0 4px; font-weight: 600;
+}
+.row { display: flex; gap: 10px; align-items: center; }
+.row.wrap { flex-wrap: wrap; }
+.spacer { flex: 1; }
+.muted { color: var(--text-soft); } .faint { color: var(--text-faint); }
+.center { text-align: center; }
+.h1 { font-size: 1.55rem; line-height: 1.2; margin: 4px 0 12px; font-weight: 700; letter-spacing: -0.01em; }
+.h2 { font-size: 1.15rem; margin: 4px 0 10px; font-weight: 700; }
+.h3 { font-size: 0.95rem; margin: 2px 0 6px; font-weight: 600; }
+.small { font-size: 0.82rem; } .tiny { font-size: 0.72rem; }
+hr.sep { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+.app-header {
+  position: sticky; top: 0; z-index: 30; background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: calc(var(--safe-top) + 8px) 16px 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.app-header h1 { font-size: 1.05rem; margin: 0; font-weight: 700; flex: 1; min-width: 0; }
+.app-header .sub { font-size: 0.78rem; color: var(--text-soft); }
+.app-header .icon-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 10px; color: var(--text-soft);
+}
+.app-header .icon-btn:hover { background: var(--bg-elev); }
+.tabbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+  background: var(--bg-elev); border-top: 1px solid var(--border);
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  padding-bottom: var(--safe-bottom);
+  height: calc(var(--tabbar-h) + var(--safe-bottom));
+}
+.tabbar button {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px; color: var(--text-soft); font-size: 0.7rem; min-height: var(--tabbar-h);
+}
+.tabbar button.active { color: var(--accent); }
+.tabbar button .icon { width: 22px; height: 22px; }
